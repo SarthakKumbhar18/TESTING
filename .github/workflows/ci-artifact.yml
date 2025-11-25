@@ -1,12 +1,13 @@
-name: CI - Test and upload hello.py
+name: CI — Test and upload hello.py
 
 on:
   push:
-    branches: ["main"]
+    branches: [ main ]
 
 jobs:
   test-and-upload:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -22,6 +23,8 @@ jobs:
           pip install pytest
 
       - name: Run tests
+        env:
+          PYTHONPATH: ${{ github.workspace }}
         run: pytest -q
 
       - name: Upload hello.py as artifact
@@ -30,3 +33,4 @@ jobs:
         with:
           name: hello-py
           path: hello.py
+
