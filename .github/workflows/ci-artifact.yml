@@ -8,8 +8,7 @@ jobs:
   test-and-upload:
     runs-on: ubuntu-latest
     env:
-      # make project root importable so "from hello import Greet" works
-      PYTHONPATH: ${{ github.workspace }}
+      PYTHONPATH: ${{ github.workspace }}    # <-- ensures runner can import hello.py
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
